@@ -1,0 +1,49 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.modkit.studio'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId 'com.modkit.studio'
+        minSdk 26
+        targetSdk 32
+        versionCode 2
+        versionName '2.0.0'
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+        }
+        release {
+            minifyEnabled false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    androidResources {
+        // Keep selected APK inputs stored without compression when packaged into test assets.
+        noCompress += ['apk']
+    }
+
+    packaging {
+        jniLibs {
+            useLegacyPackaging true
+        }
+        resources {
+            excludes += ['prebuilt/linux/**', 'prebuilt/macosx/**', 'prebuilt/windows/**']
+        }
+    }
+}
+
+dependencies {
+    implementation project(':brut.apktool:apktool-android')
+    implementation 'com.android.tools.build:apksig:8.7.0'
+}

@@ -1,0 +1,34 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    versionCatalogs {
+        create('libs') {
+            from(files("third_party/apktool-android/gradle/libs.versions.toml"))
+        }
+    }
+}
+
+rootProject.name = 'ModKitCloneKit'
+include ':app'
+include 'brut.j.common', 'brut.j.util', 'brut.j.dir', 'brut.j.xml', 'brut.j.yaml'
+include 'brut.apktool:apktool-lib', 'brut.apktool:apktool-android'
+
+project(':brut.j.common').projectDir = file('third_party/apktool-android/brut.j.common')
+project(':brut.j.util').projectDir = file('third_party/apktool-android/brut.j.util')
+project(':brut.j.dir').projectDir = file('third_party/apktool-android/brut.j.dir')
+project(':brut.j.xml').projectDir = file('third_party/apktool-android/brut.j.xml')
+project(':brut.j.yaml').projectDir = file('third_party/apktool-android/brut.j.yaml')
+project(':brut.apktool:apktool-lib').projectDir = file('third_party/apktool-android/brut.apktool/apktool-lib')
+project(':brut.apktool:apktool-android').projectDir = file('third_party/apktool-android/brut.apktool/apktool-android')
