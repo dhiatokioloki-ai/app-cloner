@@ -47,3 +47,15 @@ dependencies {
     implementation project(':brut.apktool:apktool-android')
     implementation 'com.android.tools.build:apksig:8.7.0'
 }
+
+
+subprojects {
+    if (!(project.name in ['app', 'apktool-android'])) {
+        apply plugin: 'java-library'
+
+        java {
+            sourceCompatibility = JavaVersion.VERSION_1_8
+            targetCompatibility = JavaVersion.VERSION_1_8
+        }
+    }
+}
