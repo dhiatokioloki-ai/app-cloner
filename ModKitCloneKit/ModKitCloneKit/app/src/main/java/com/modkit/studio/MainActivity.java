@@ -386,6 +386,7 @@ public class MainActivity extends Activity {
             String name;
             try { name = getPackageManager().getApplicationLabel(app).toString(); }
             catch (Exception e) { name = app.packageName; }
+            final String nameForClone = name;
             if (!name.toLowerCase(Locale.ROOT).contains(q) && !app.packageName.toLowerCase(Locale.ROOT).contains(q)) continue;
             hits++;
             LinearLayout c = card(list, 9);
@@ -437,6 +438,8 @@ public class MainActivity extends Activity {
         addButton(c, "Open Android App Info", false, () -> openAppSettings(selectedApp.packageName));
         final String packageForProfile = selectedApp.packageName;
         addButton(body, "⧉  Build a separate APK clone", true, () -> openCloneStudio(selectedApp, name));
+        addButton(body, "⧉  Build a separate APK clone", true,
+        () -> openCloneStudio(selectedApp, nameForClone));
         addButton(body, "＋  Create profile for this app", false, () -> { pendingPackage = packageForProfile; screen = "profiles"; render(); showCreateProfileDialog(packageForProfile); });
         LinearLayout info = card(body, 0);
         info.addView(text("WHAT MODKIT CAN DO", 10, ACCENT, true));
